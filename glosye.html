@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bnei Ohr — Glosye Sajès La</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #050505;
+            color: #d4af37;
+            font-family: 'Cormorant Garamond', serif;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* STARS */
+        #stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+        .star { position: absolute; background: #d4af37; border-radius: 50%; animation: twinkle var(--d) ease-in-out infinite alternate; opacity: 0; }
+        @keyframes twinkle { 0% { opacity: 0; } 100% { opacity: var(--o); } }
+
+        .glosye-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HEADER */
+        .glosye-header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            margin-bottom: 2rem;
+        }
+        .glosye-hebrew-title {
+            font-family: 'Noto Serif Hebrew', serif;
+            font-size: 3rem;
+            color: #d4af37;
+            text-shadow: 0 0 30px rgba(212,175,55,0.4);
+            display: block;
+            margin-bottom: 0.5rem;
+            direction: rtl;
+        }
+        .glosye-main-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            letter-spacing: 0.4em;
+            color: #d4af37;
+            border-bottom: 1px solid rgba(212,175,55,0.4);
+            padding-bottom: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .glosye-subtitle {
+            font-style: italic;
+            color: #7a6030;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* BACK BUTTON */
+        .back-btn {
+            color: #d4af37;
+            text-decoration: none;
+            border: 1px solid #7a6030;
+            padding: 0.6rem 1.5rem;
+            display: inline-block;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .back-btn:hover {
+            background: rgba(212,175,55,0.1);
+            border-color: #d4af37;
+        }
+
+        /* SEARCH */
+        .search-box {
+            width: 100%;
+            background: rgba(212,175,55,0.05);
+            border: 1px solid rgba(212,175,55,0.2);
+            color: #f0f0f0;
+            padding: 0.8rem 1.2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            outline: none;
+            margin-bottom: 2rem;
+            transition: border-color 0.3s;
+        }
+        .search-box:focus { border-color: #d4af37; }
+        .search-box::placeholder { color: #7a6030; }
+
+        /* ALPHABET NAV */
+        .alpha-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-bottom: 2rem;
+        }
+        .alpha-btn {
+            background: none;
+            border: 1px solid rgba(212,175,55,0.2);
+            color: #7a6030;
+            padding: 0.3rem 0.6rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.1em;
+        }
+        .alpha-btn:hover, .alpha-btn.active {
+            background: rgba(212,175,55,0.1);
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+
+        /* TERM CARD */
+        .term-card {
+            border-bottom: 1px solid rgba(212,175,55,0.15);
+            padding: 2rem 0;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s;
+            animation: fadeIn 0.5s ease;
+        }
+        .term-card:hover {
+            padding-left: 0.5rem;
+            border-bottom-color: rgba(212,175,55,0.4);
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .term-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .term-left { flex: 1; }
+
+        .transliteration {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            color: #d4af37;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .hebrew-word {
+            font-family: 'Noto Serif Hebrew', serif;
+            font-size: 2.2rem;
+            display: block;
+            color: #ffffff;
+            margin: 0.3rem 0;
+            direction: rtl;
+            text-align: right;
+            text-shadow: 0 0 20px rgba(212,175,55,0.2);
+        }
+
+        .definition {
+            color: #a0a0a0;
+            line-height: 1.8;
+            margin-top: 0.8rem;
+            font-size: 1.05rem;
+            font-style: italic;
+        }
+
+        /* LETTER GROUP */
+        .letter-group {
+            margin-bottom: 0.5rem;
+        }
+        .letter-anchor {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            color: rgba(212,175,55,0.3);
+            text-transform: uppercase;
+            padding: 0.5rem 0;
+            display: block;
+        }
+
+        /* NO RESULT */
+        .no-result {
+            text-align: center;
+            color: #7a6030;
+            font-style: italic;
+            padding: 3rem 0;
+            display: none;
+        }
+
+        /* FOOTER */
+        .glosye-footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            border-top: 1px solid rgba(212,175,55,0.1);
+            margin-top: 2rem;
+        }
+        .glosye-footer a {
+            color: #7a6030;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            transition: color 0.3s;
+        }
+        .glosye-footer a:hover { color: #d4af37; }
+
+        @media (max-width: 600px) {
+            .term-header { flex-direction: column; }
+            .hebrew-word { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<div class="glosye-container">
+
+    <a href="bneiohr.html" class="back-btn">← Tounen nan Paj Prensipal</a>
+
+    <div class="glosye-header">
+        <span class="glosye-hebrew-title">גְּלוֹסָרְיוּם</span>
+        <h1 class="glosye-main-title">Glosye Sajès La</h1>
+        <p class="glosye-subtitle">Bnei Ohr — בְּנֵי אוֹר — Tèm Kabbalistik Fondamantal</p>
+    </div>
+
+    <!-- SEARCH -->
+    <input type="text" class="search-box" id="searchBox" placeholder="Chèche yon tèm..." oninput="filterTerms()">
+
+    <!-- ALPHA NAV -->
+    <div class="alpha-nav" id="alphaNav"></div>
+
+    <!-- TERMS -->
+    <div id="termsContainer"></div>
+    <p class="no-result" id="noResult">Okenn tèm jwenn pou rechèch sa a.</p>
+
+    <div class="glosye-footer">
+        <a href="bneiohr.html">← Tounen nan Bnei Ohr</a>
+    </div>
+
+</div>
+
+<script>
+// ── TERMS DATA ──
+const terms = [
+    {
+        id: "bitul",
+        transliteration: "Bitul",
+        hebrew: "בִּטּוּל",
+        definition: "Anilasyon ego a. Lè yon moun rale kò l pou l kite plas pou Limyè Bondye a klere nan li."
+    },
+    {
+        id: "devekut",
+        transliteration: "Devekut",
+        hebrew: "דְּבֵקוּת",
+        definition: "Koneksyon. Eta kote nanm yon moun rete kole ak sous limyè a nan chak sa l ap fè."
+    },
+    {
+        id: "ein-sof",
+        transliteration: "Ein Sof",
+        hebrew: "אֵין סוֹף",
+        definition: "Literalman \"San Fen\". Li reprezante Bondye anvan li te kreye anyen, nan yon dimansyon ki depase entèlijans nou."
+    },
+    {
+        id: "ilan-hachayim",
+        transliteration: "Ilan HaChayim",
+        hebrew: "אִילָן הַחַיִּים",
+        definition: "Pye bwa lavi a. Se kat jewografik espirityèl ki montre kijan 10 Sefirot yo konekte yonn ak lòt."
+    },
+    {
+        id: "kavanah",
+        transliteration: "Kavanah",
+        hebrew: "כַּוָּנָה",
+        definition: "Entansyon. Se fòs ak direksyon kè nou mete nan yon priyè oswa nan yon aksyon pou l ka gen valè espirityèl."
+    },
+    {
+        id: "keter",
+        transliteration: "Keter",
+        hebrew: "כֶּתֶר",
+        definition: "Kouwòn nan. Se pwen ki pi wo nan 10 Sefirot yo, li reprezante volonte ki depase konpreyansyon nou."
+    },
+    {
+        id: "kli",
+        transliteration: "Kli",
+        hebrew: "כְּלִי",
+        definition: "Veso. Se kapasite nou genyen pou n resevwa limyè a."
+    },
+    {
+        id: "ohr",
+        transliteration: "Ohr",
+        hebrew: "אוֹר",
+        definition: "Limyè. Se enèji espirityèl ki soti nan Ein Sof la pou ranpli kreyasyon an."
+    },
+    {
+        id: "olamot",
+        transliteration: "Olamot",
+        hebrew: "עוֹלָמוֹת",
+        definition: "Mond yo. Gen 5 gwo nivo reyalite kote limyè a pase anvan li rive nan nou."
+    },
+    {
+        id: "reshimu",
+        transliteration: "Reshimu",
+        hebrew: "רְשִׁימוּ",
+        definition: "Tras oswa anprent. Ti tras limyè ki toujou rete anndan nou menm lè nou santi nou lwen sous la."
+    },
+    {
+        id: "sefira",
+        transliteration: "Sefira",
+        hebrew: "סְפִירָה",
+        definition: "Youn nan 10 atribi oswa kanal kote limyè Ein Sof la pase pou l manifeste nan mond lan."
+    },
+    {
+        id: "shechinah",
+        transliteration: "Shechinah",
+        hebrew: "שְׁכִינָה",
+        definition: "Prezans diven an ki rete nan mond sa a. Li reprezante bò feminen limyè a."
+    },
+    {
+        id: "tikkun",
+        transliteration: "Tikkun",
+        hebrew: "תִּקּוּן",
+        definition: "Reparasyon. Travay chak moun dwe fè pou ranje tèt yo epi ranje mond lan."
+    },
+    {
+        id: "tsimtsum",
+        transliteration: "Tsimtsum",
+        hebrew: "צִמְצוּם",
+        definition: "Kontraksyon. Aksyon kote Ein Sof la rale kò l pou l kreye yon espas vid pou n ka egziste kòm moun lib."
+    }
+];
+
+// Sort alphabetically
+terms.sort((a, b) => a.transliteration.localeCompare(b.transliteration));
+
+// ── RENDER ──
+function renderTerms(filtered) {
+    const container = document.getElementById('termsContainer');
+    const noResult = document.getElementById('noResult');
+    container.innerHTML = '';
+
+    if (filtered.length === 0) {
+        noResult.style.display = 'block';
+        return;
+    }
+    noResult.style.display = 'none';
+
+    // Group by first letter
+    const groups = {};
+    filtered.forEach(term => {
+        const letter = term.transliteration[0].toUpperCase();
+        if (!groups[letter]) groups[letter] = [];
+        groups[letter].push(term);
+    });
+
+    Object.keys(groups).sort().forEach(letter => {
+        const group = document.createElement('div');
+        group.className = 'letter-group';
+        group.id = 'letter-' + letter;
+
+        const anchor = document.createElement('span');
+        anchor.className = 'letter-anchor';
+        anchor.textContent = '— ' + letter + ' —';
+        group.appendChild(anchor);
+
+        groups[letter].forEach(term => {
+            const card = document.createElement('div');
+            card.className = 'term-card';
+            card.innerHTML = `
+                <div class="term-header">
+                    <div class="term-left">
+                        <span class="transliteration">${term.transliteration}</span>
+                        <span class="hebrew-word">${term.hebrew}</span>
+                    </div>
+                </div>
+                <p class="definition">${term.definition}</p>
+            `;
+            group.appendChild(card);
+        });
+
+        container.appendChild(group);
+    });
+}
+
+// ── ALPHA NAV ──
+function buildAlphaNav() {
+    const nav = document.getElementById('alphaNav');
+    const letters = [...new Set(terms.map(t => t.transliteration[0].toUpperCase()))].sort();
+    letters.forEach(letter => {
+        const btn = document.createElement('button');
+        btn.className = 'alpha-btn';
+        btn.textContent = letter;
+        btn.onclick = () => {
+            const el = document.getElementById('letter-' + letter);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        };
+        nav.appendChild(btn);
+    });
+}
+
+// ── SEARCH ──
+function filterTerms() {
+    const q = document.getElementById('searchBox').value.toLowerCase();
+    const filtered = terms.filter(t =>
+        t.transliteration.toLowerCase().includes(q) ||
+        t.definition.toLowerCase().includes(q) ||
+        t.hebrew.includes(q)
+    );
+    renderTerms(filtered);
+}
+
+// ── STARS ──
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 1.5 + 0.5;
+    s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--o:${0.1+Math.random()*0.4};animation-delay:${Math.random()*4}s;`;
+    starsEl.appendChild(s);
+}
+
+// ── INIT ──
+buildAlphaNav();
+renderTerms(terms);
+</script>
+</body>
+</html>

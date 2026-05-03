@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bnei Ohr — בְּנֵי אוֹר — Pitit Limyè a</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: #050505; color: #f0f0f0; font-family: 'Cormorant Garamond', serif; overflow-x: hidden; }
+
+        /* STARS */
+        #stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .star { position: absolute; background: #d4af37; border-radius: 50%; animation: twinkle var(--d) ease-in-out infinite alternate; opacity: 0; }
+        @keyframes twinkle { 0% { opacity: 0; } 100% { opacity: var(--o); } }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 3rem;
+            background: rgba(5,5,5,0.92);
+            border-bottom: 1px solid rgba(212,175,55,0.15);
+            backdrop-filter: blur(8px);
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 0.7rem;
+            text-decoration: none;
+        }
+        .nav-logo-hebrew {
+            font-family: 'Noto Serif Hebrew', serif;
+            font-size: 1.3rem; color: #d4af37;
+            text-shadow: 0 0 15px rgba(212,175,55,0.4);
+        }
+        .nav-logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem; letter-spacing: 0.2em;
+            color: #d4af37; text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex; gap: 2rem; list-style: none;
+        }
+        .nav-links a {
+            font-family: 'Cinzel', serif; font-size: 0.72rem;
+            letter-spacing: 0.15em; color: #a0a0a0;
+            text-decoration: none; text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: #d4af37; }
+        .nav-links a.active { color: #d4af37; border-bottom: 1px solid #d4af37; padding-bottom: 2px; }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background-image: url('akey-semen.jpg');
+            background-size: cover; background-position: center top;
+            filter: brightness(0.35);
+            z-index: 0;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom,
+                rgba(5,5,5,0.3) 0%,
+                rgba(5,5,5,0.1) 40%,
+                rgba(5,5,5,0.7) 80%,
+                rgba(5,5,5,1) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative; z-index: 2;
+            padding: 8rem 2rem 4rem;
+            max-width: 800px;
+        }
+        .hero-label {
+            font-family: 'Cinzel', serif; font-size: 0.65rem;
+            letter-spacing: 0.5em; color: #d4af37;
+            text-transform: uppercase; margin-bottom: 1rem;
+            opacity: 0; animation: fadeUp 1s 0.3s ease forwards;
+        }
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            letter-spacing: 0.2em; color: #ffffff;
+            text-transform: uppercase; line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+            opacity: 0; animation: fadeUp 1s 0.6s ease forwards;
+        }
+        .hero-title span { color: #d4af37; }
+        .hero-verse {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: rgba(255,255,255,0.75); font-style: italic;
+            max-width: 600px; margin: 0 auto 2.5rem;
+            line-height: 1.9;
+            opacity: 0; animation: fadeUp 1s 0.9s ease forwards;
+        }
+        .hero-divider {
+            width: 80px; height: 1px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+            margin: 1.5rem auto;
+            opacity: 0; animation: fadeUp 1s 1s ease forwards;
+        }
+        .hero-btn {
+            display: inline-block; text-decoration: none;
+            background: rgba(212,175,55,0.1);
+            border: 1px solid #d4af37; color: #d4af37;
+            padding: 0.9rem 2.5rem;
+            font-family: 'Cinzel', serif; font-size: 0.8rem;
+            letter-spacing: 0.3em; text-transform: uppercase;
+            transition: all 0.4s; cursor: pointer;
+            box-shadow: 0 0 20px rgba(212,175,55,0.1);
+            opacity: 0; animation: fadeUp 1s 1.2s ease forwards;
+        }
+        .hero-btn:hover {
+            background: rgba(212,175,55,0.2);
+            box-shadow: 0 0 35px rgba(212,175,55,0.3);
+            color: #fff;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── SCROLL INDICATOR ── */
+        .scroll-indicator {
+            position: absolute; bottom: 2rem; left: 50%;
+            transform: translateX(-50%); z-index: 2;
+            display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+        }
+        .scroll-indicator span {
+            font-family: 'Cinzel', serif; font-size: 0.55rem;
+            letter-spacing: 0.3em; color: rgba(212,175,55,0.5);
+            text-transform: uppercase;
+        }
+        .scroll-dot {
+            width: 1px; height: 40px;
+            background: linear-gradient(to bottom, #d4af37, transparent);
+            animation: scrollDot 2s ease-in-out infinite;
+        }
+        @keyframes scrollDot { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+        /* ── SECTIONS ── */
+        section { position: relative; z-index: 1; }
+
+        /* ── SA KI NEF ── */
+        .neuf-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(to bottom, #050505, #0a0800, #050505);
+        }
+        .section-header-center {
+            text-align: center; margin-bottom: 3rem;
+        }
+        .section-eyebrow {
+            font-family: 'Cinzel', serif; font-size: 0.65rem;
+            letter-spacing: 0.5em; color: rgba(212,175,55,0.5);
+            text-transform: uppercase; margin-bottom: 0.8rem;
+            display: block;
+        }
+        .section-main-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            letter-spacing: 0.2em; color: #d4af37;
+            text-transform: uppercase;
+        }
+        .section-main-divider {
+            width: 60px; height: 1px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+            margin: 1rem auto 0;
+        }
+
+        /* GRID */
+        .neuf-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+        }
+        .neuf-card {
+            position: relative; overflow: hidden;
+            border: 1px solid rgba(212,175,55,0.15);
+            text-decoration: none; display: block;
+            transition: all 0.4s; background: #080800;
+        }
+        .neuf-card:hover { border-color: rgba(212,175,55,0.5); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(212,175,55,0.08); }
+        .neuf-card-img {
+            width: 100%; aspect-ratio: 16/9;
+            object-fit: cover; display: block;
+            filter: brightness(0.5) sepia(0.3);
+            transition: filter 0.4s;
+        }
+        .neuf-card:hover .neuf-card-img { filter: brightness(0.65) sepia(0.2); }
+        .neuf-card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(5,5,5,0.9) 0%, transparent 60%);
+        }
+        .neuf-card-body {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 1.2rem;
+        }
+        .neuf-card-tag {
+            font-family: 'Cinzel', serif; font-size: 0.6rem;
+            letter-spacing: 0.3em; color: #d4af37;
+            text-transform: uppercase; display: block; margin-bottom: 0.4rem;
+        }
+        .neuf-card-title {
+            font-family: 'Cinzel', serif; font-size: 0.85rem;
+            letter-spacing: 0.1em; color: #ffffff;
+            text-transform: uppercase; line-height: 1.4;
+        }
+        .neuf-card-arrow {
+            display: inline-block; margin-top: 0.5rem;
+            font-size: 0.75rem; color: rgba(212,175,55,0.6);
+            transition: all 0.3s;
+        }
+        .neuf-card:hover .neuf-card-arrow { color: #d4af37; transform: translateX(4px); }
+
+        /* Placeholder image si foto pa disponib */
+        .neuf-card-placeholder {
+            width: 100%; aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #0d0a00, #1a1200);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .neuf-card-placeholder span {
+            font-family: 'Noto Serif Hebrew', serif;
+            font-size: 2.5rem; color: rgba(212,175,55,0.2);
+        }
+
+        /* ── VÈSÈ ENSPIRASYONÈL ── */
+        .verse-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: #050505;
+        }
+        .verse-hebrew {
+            font-family: 'Noto Serif Hebrew', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: rgba(212,175,55,0.4); direction: rtl;
+            margin-bottom: 1.5rem; letter-spacing: 0.05em;
+        }
+        .verse-text {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-style: italic; color: rgba(255,255,255,0.7);
+            max-width: 700px; margin: 0 auto 1rem;
+            line-height: 1.9;
+        }
+        .verse-ref {
+            font-family: 'Cinzel', serif; font-size: 0.7rem;
+            letter-spacing: 0.3em; color: #7a6030;
+            text-transform: uppercase;
+        }
+
+        /* ── LESON SEMÈN ── */
+        .leson-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(to bottom, #050505, #0a0800);
+        }
+        .leson-inner {
+            max-width: 800px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 3rem; align-items: center;
+        }
+        .leson-text {}
+        .leson-eyebrow {
+            font-family: 'Cinzel', serif; font-size: 0.65rem;
+            letter-spacing: 0.5em; color: rgba(212,175,55,0.5);
+            text-transform: uppercase; display: block; margin-bottom: 0.8rem;
+        }
+        .leson-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: #d4af37; margin-bottom: 1rem; line-height: 1.4;
+        }
+        .leson-desc {
+            color: #808080; font-size: 1rem; line-height: 1.9;
+            font-style: italic; margin-bottom: 1.5rem;
+        }
+        .leson-btn {
+            display: inline-block; text-decoration: none;
+            border: 1px solid rgba(212,175,55,0.4); color: #d4af37;
+            padding: 0.7rem 1.8rem;
+            font-family: 'Cinzel', serif; font-size: 0.72rem;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .leson-btn:hover { background: rgba(212,175,55,0.08); border-color: #d4af37; }
+        .leson-visual {
+            border: 1px solid rgba(212,175,55,0.15);
+            padding: 2rem; text-align: center;
+            background: rgba(212,175,55,0.02);
+        }
+        .leson-visual-hebrew {
+            font-family: 'Noto Serif Hebrew', serif;
+            font-size: 4rem; color: #d4af37;
+            text-shadow: 0 0 30px rgba(212,175,55,0.3);
+            display: block; margin-bottom: 0.5rem;
+        }
+        .leson-visual-name {
+            font-family: 'Cinzel', serif; font-size: 0.75rem;
+            letter-spacing: 0.3em; color: #7a6030; text-transform: uppercase;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            position: relative; z-index: 1;
+            background: #050505;
+            border-top: 1px solid rgba(212,175,55,0.1);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .footer-logo {
+            font-family: 'Noto Serif Hebrew', serif;
+            font-size: 1.8rem; color: rgba(212,175,55,0.4);
+            display: block; margin-bottom: 0.5rem;
+        }
+        .footer-links {
+            display: flex; justify-content: center; gap: 2rem;
+            list-style: none; margin-bottom: 1.5rem; flex-wrap: wrap;
+        }
+        .footer-links a {
+            font-family: 'Cinzel', serif; font-size: 0.65rem;
+            letter-spacing: 0.2em; color: #606060;
+            text-decoration: none; text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: #d4af37; }
+        .footer-copy {
+            font-size: 0.8rem; color: #404040; letter-spacing: 0.1em;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .neuf-grid { grid-template-columns: 1fr; }
+            .leson-inner { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-content { padding: 7rem 1.5rem 3rem; }
+        }
+        @media (max-width: 480px) {
+            .neuf-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<!-- NAV -->
+<nav>
+    <a href="index.html" class="nav-logo">
+        <span class="nav-logo-hebrew">בְּנֵי אוֹר</span>
+        <span class="nav-logo-text">Bnei Ohr</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html" class="active">Akèy</a></li>
+        <li><a href="bibliyotek.html">Bibliyotèk</a></li>
+        <li><a href="leson.html">Leson</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <p class="hero-label">✦ Bnei Ohr — Pitit Limyè a ✦</p>
+        <h1 class="hero-title">SAJÈS POU<br><span>SEMÈN NAN</span></h1>
+        <div class="hero-divider"></div>
+        <p class="hero-verse">
+            "Nan kòmansman te gen Limyè — epi Limyè a te bon.
+            Se pou lizyè sa a klere nan kè ou jodia."
+        </p>
+        <a href="bibliyotek.html" class="hero-btn">Dekouvri Leson an</a>
+    </div>
+    <div class="scroll-indicator">
+        <span>Deplase desann</span>
+        <div class="scroll-dot"></div>
+    </div>
+</section>
+
+<!-- SA KI NEF -->
+<section class="neuf-section">
+    <div class="section-header-center">
+        <span class="section-eyebrow">Dènye Aktivite</span>
+        <h2 class="section-main-title">Sa Ki Nèf</h2>
+        <div class="section-main-divider"></div>
+    </div>
+
+    <div class="neuf-grid">
+
+        <!-- Kat 1 — Bibliyotèk -->
+        <a href="bibliyotek.html" class="neuf-card">
+            <div class="neuf-card-placeholder">
+                <span>בֵּית</span>
+            </div>
+            <div class="neuf-card-overlay"></div>
+            <div class="neuf-card-body">
+                <span class="neuf-card-tag">Resous</span>
+                <div class="neuf-card-title">Bibliyotèk Limyè a</div>
+                <span class="neuf-card-arrow">Antre →</span>
+            </div>
+        </a>
+
+        <!-- Kat 2 — Glosye -->
+        <a href="glosye.html" class="neuf-card">
+            <div class="neuf-card-placeholder">
+                <span>גְּלוֹ</span>
+            </div>
+            <div class="neuf-card-overlay"></div>
+            <div class="neuf-card-body">
+                <span class="neuf-card-tag">Etid</span>
+                <div class="neuf-card-title">Glosye Sajès La</div>
+                <span class="neuf-card-arrow">Antre →</span>
+            </div>
+        </a>
+
+        <!-- Kat 3 — Ohr -->
+        <a href="ohr.html" class="neuf-card">
+            <div class="neuf-card-placeholder">
+                <span>אוֹר</span>
+            </div>
+            <div class="neuf-card-overlay"></div>
+            <div class="neuf-card-body">
+                <span class="neuf-card-tag">Ansèyman</span>
+                <div class="neuf-card-title">Ohr — Limyè</div>
+                <span class="neuf-card-arrow">Antre →</span>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- VÈSÈ -->
+<section class="verse-section">
+    <p class="verse-hebrew">אֵין עוֹד מִלְּבַדּוֹ</p>
+    <p class="verse-text">"Pa gen anyen lòt pase Li — Ein Sof, sous tout sous yo, rasin tout reyalite."</p>
+    <span class="verse-ref">— Devarim 4:35 | Kabbalah Bnei Ohr</span>
+</section>
+
+<!-- LESON SEMÈN -->
+<section class="leson-section">
+    <div class="leson-inner">
+        <div class="leson-text">
+            <span class="leson-eyebrow">Leson Semèn Nan</span>
+            <h2 class="leson-title">Malkuth — Pòt Antre nan Limyè a</h2>
+            <p class="leson-desc">
+                Malkuth se kote nou kòmanse — tè a anba pye nou, reyalite fizik la. Men se tou kote syèl rankontre tè. Chak aksyon nou fè isit la gen yon repèkisyon espirityèl.
+            </p>
+            <a href="bibliyotek.html" class="leson-btn">Li Leson Konplè a →</a>
+        </div>
+        <div class="leson-visual">
+            <span class="leson-visual-hebrew">מַלְכוּת</span>
+            <span class="leson-visual-name">Malkuth — Wayòm</span>
+        </div>
+    </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak" style="padding:5rem 2rem; background:#050505; text-align:center; position:relative; z-index:1;">
+    <span class="section-eyebrow" style="display:block; margin-bottom:0.8rem;">Rejwenn Nou</span>
+    <h2 class="section-main-title" style="margin-bottom:1.5rem;">Kontakte Bnei Ohr</h2>
+    <div class="section-main-divider" style="margin-bottom:2rem;"></div>
+    <p style="color:#808080; font-style:italic; max-width:500px; margin:0 auto 2rem;">
+        Ou enterese etidye? Ou gen yon kesyon? Ekri nou — nou ap reponn ou.
+    </p>
+    <form onsubmit="handleSubmit(event)" style="max-width:500px; margin:0 auto; display:flex; flex-direction:column; gap:1rem;">
+        <input type="text" placeholder="Non ou" required style="background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.2); color:#f0f0f0; padding:0.8rem 1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; outline:none; width:100%;">
+        <input type="email" placeholder="Email ou" required style="background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.2); color:#f0f0f0; padding:0.8rem 1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; outline:none; width:100%;">
+        <textarea placeholder="Mesaj ou" rows="4" required style="background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.2); color:#f0f0f0; padding:0.8rem 1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; outline:none; width:100%; resize:vertical;"></textarea>
+        <button type="submit" id="submitBtn" style="background:rgba(212,175,55,0.1); border:1px solid #d4af37; color:#d4af37; padding:0.9rem 2rem; font-family:'Cinzel',serif; font-size:0.8rem; letter-spacing:0.3em; text-transform:uppercase; cursor:pointer; transition:all 0.3s;">
+            Voye Mesaj
+        </button>
+    </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <span class="footer-logo">בְּנֵי אוֹר</span>
+    <ul class="footer-links">
+        <li><a href="index.html">Akèy</a></li>
+        <li><a href="bibliyotek.html">Bibliyotèk</a></li>
+        <li><a href="glosye.html">Glosye</a></li>
+        <li><a href="ohr.html">Ohr</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+    </ul>
+    <p class="footer-copy">© Bnei Ohr — Ayiti — Tout dwa rezève</p>
+</footer>
+
+<script>
+    // STARS
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        const size = Math.random() * 2 + 0.5;
+        s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*5}s;--o:${0.1+Math.random()*0.4};animation-delay:${Math.random()*5}s;`;
+        starsEl.appendChild(s);
+    }
+
+    // FORM
+    function handleSubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = '✓ Mesaj Voye!';
+        btn.style.color = '#a0d4a0';
+        btn.style.borderColor = '#a0d4a0';
+        setTimeout(() => {
+            btn.textContent = 'Voye Mesaj';
+            btn.style.color = '#d4af37';
+            btn.style.borderColor = '#d4af37';
+            e.target.reset();
+        }, 3000);
+    }
+
+    // NAV SCROLL EFFECT
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.style.background = 'rgba(5,5,5,0.98)';
+        } else {
+            nav.style.background = 'rgba(5,5,5,0.92)';
+        }
+    });
+</script>
+</body>
+</html>
