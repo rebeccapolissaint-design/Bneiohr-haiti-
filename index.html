@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bnei Ohr — בְּנֵי אוֹר — Pitit Limyè a</title>
+    <title>Bnei Ohr — בְּנֵי אוֹר — Enfants de la Lumière</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -50,103 +50,184 @@
         .nav-links a:hover { color: #d4af37; }
         .nav-links a.active { color: #d4af37; border-bottom: 1px solid #d4af37; padding-bottom: 2px; }
 
-        /* ── HERO ── */
+        /* ── HERO (style jw.org) ── */
         .hero {
-            position: relative; min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; overflow: hidden;
+            position: relative;
+            width: 100%; overflow: hidden;
         }
+
         .hero-bg {
-            position: absolute; inset: 0;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 21/9;
+            min-height: 340px;
             background-image: url('akey-semen.jpg');
-            background-size: cover; background-position: center top;
-            filter: brightness(0.35);
-            z-index: 0;
+            background-size: 85%;
+            background-repeat: no-repeat;
+            background-position: center 30%;
+            background-color: #050505;
+            display: block;
         }
-        .hero-overlay {
+
+        /* Gradient: nwa anwo (pou nav), klè nan mitan, nwa anba */
+        .hero-bg::after {
+            content: '';
             position: absolute; inset: 0;
-            background: linear-gradient(to bottom,
-                rgba(5,5,5,0.3) 0%,
-                rgba(5,5,5,0.1) 40%,
-                rgba(5,5,5,0.7) 80%,
-                rgba(5,5,5,1) 100%);
-            z-index: 1;
+            background: linear-gradient(
+                to bottom,
+                rgba(5,5,5,0.55) 0%,
+                rgba(5,5,5,0.2) 35%,
+                rgba(5,5,5,0.25) 55%,
+                rgba(5,5,5,0.85) 88%,
+                rgba(5,5,5,1) 100%
+            );
         }
+
+        /* Tèks: santral, anba foto a */
         .hero-content {
-            position: relative; z-index: 2;
-            padding: 8rem 2rem 4rem;
-            max-width: 800px;
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            z-index: 2;
+            padding: 2rem 2rem 2.8rem;
+            text-align: center;
         }
+
         .hero-label {
-            font-family: 'Cinzel', serif; font-size: 0.65rem;
-            letter-spacing: 0.5em; color: #d4af37;
-            text-transform: uppercase; margin-bottom: 1rem;
+            font-family: 'Cinzel', serif; font-size: 0.58rem;
+            letter-spacing: 0.5em; color: rgba(212,175,55,0.9);
+            text-transform: uppercase; margin-bottom: 0.6rem; display: block;
             opacity: 0; animation: fadeUp 1s 0.3s ease forwards;
         }
         .hero-title {
             font-family: 'Cinzel', serif;
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
-            letter-spacing: 0.2em; color: #ffffff;
-            text-transform: uppercase; line-height: 1.2;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.8);
-            opacity: 0; animation: fadeUp 1s 0.6s ease forwards;
+            font-size: clamp(1.8rem, 7vw, 3.2rem);
+            letter-spacing: 0.12em; color: #ffffff;
+            text-transform: uppercase; line-height: 1.15;
+            margin-bottom: 0.7rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.7);
+            opacity: 0; animation: fadeUp 1s 0.5s ease forwards;
         }
         .hero-title span { color: #d4af37; }
+        .hero-divider {
+            width: 50px; height: 1px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+            margin: 0.6rem auto 0.9rem;
+            opacity: 0; animation: fadeUp 1s 0.7s ease forwards;
+        }
         .hero-verse {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: rgba(255,255,255,0.75); font-style: italic;
-            max-width: 600px; margin: 0 auto 2.5rem;
-            line-height: 1.9;
+            font-size: clamp(0.88rem, 2.5vw, 1.05rem);
+            color: rgba(255,255,255,0.78); font-style: italic;
+            max-width: 480px; margin: 0 auto 1.4rem;
+            line-height: 1.8;
             opacity: 0; animation: fadeUp 1s 0.9s ease forwards;
         }
-        .hero-divider {
-            width: 80px; height: 1px;
-            background: linear-gradient(to right, transparent, #d4af37, transparent);
-            margin: 1.5rem auto;
-            opacity: 0; animation: fadeUp 1s 1s ease forwards;
-        }
+        /* Bouton konpak, pa plen lajè */
         .hero-btn {
             display: inline-block; text-decoration: none;
-            background: rgba(212,175,55,0.1);
-            border: 1px solid #d4af37; color: #d4af37;
-            padding: 0.9rem 2.5rem;
-            font-family: 'Cinzel', serif; font-size: 0.8rem;
+            background: transparent;
+            border: 1px solid rgba(212,175,55,0.7); color: #d4af37;
+            padding: 0.65rem 1.8rem;
+            font-family: 'Cinzel', serif; font-size: 0.68rem;
             letter-spacing: 0.3em; text-transform: uppercase;
-            transition: all 0.4s; cursor: pointer;
-            box-shadow: 0 0 20px rgba(212,175,55,0.1);
-            opacity: 0; animation: fadeUp 1s 1.2s ease forwards;
+            transition: all 0.35s;
+            opacity: 0; animation: fadeUp 1s 1.1s ease forwards;
         }
         .hero-btn:hover {
-            background: rgba(212,175,55,0.2);
-            box-shadow: 0 0 35px rgba(212,175,55,0.3);
+            background: rgba(212,175,55,0.15);
+            border-color: #d4af37;
             color: #fff;
+            box-shadow: 0 0 25px rgba(212,175,55,0.2);
         }
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(25px); }
+            from { opacity: 0; transform: translateY(18px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
         /* ── SCROLL INDICATOR ── */
         .scroll-indicator {
-            position: absolute; bottom: 2rem; left: 50%;
-            transform: translateX(-50%); z-index: 2;
-            display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 0.4rem; padding: 1rem 0 1.4rem;
+            background: #050505;
         }
         .scroll-indicator span {
-            font-family: 'Cinzel', serif; font-size: 0.55rem;
-            letter-spacing: 0.3em; color: rgba(212,175,55,0.5);
+            font-family: 'Cinzel', serif; font-size: 0.5rem;
+            letter-spacing: 0.35em; color: rgba(212,175,55,0.35);
             text-transform: uppercase;
         }
         .scroll-dot {
-            width: 1px; height: 40px;
-            background: linear-gradient(to bottom, #d4af37, transparent);
+            width: 1px; height: 30px;
+            background: linear-gradient(to bottom, rgba(212,175,55,0.6), transparent);
             animation: scrollDot 2s ease-in-out infinite;
         }
         @keyframes scrollDot { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-        /* ── SECTIONS ── */
-        section { position: relative; z-index: 1; }
+        /* Mobile hero */
+        @media (max-width: 768px) {
+            .hero-bg {
+                aspect-ratio: 4/3;
+                background-size: 100%;
+                background-position: center 25%;
+            }
+            .hero-content { padding: 1.5rem 1.5rem 2.2rem; }
+        }
+
+        /* ── STATS BAR — lign orizontal pwòp ── */
+        .stats-bar {
+            display: flex; justify-content: center; align-items: center;
+            background: #080600;
+            border-top: 1px solid rgba(212,175,55,0.12);
+            border-bottom: 1px solid rgba(212,175,55,0.12);
+            overflow-x: auto;
+        }
+        .stat-item {
+            flex: 1; min-width: 0;
+            padding: 1.6rem 0.8rem;
+            text-align: center;
+            border-right: 1px solid rgba(212,175,55,0.1);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.4rem, 4vw, 1.9rem);
+            color: #d4af37; display: block;
+            text-shadow: 0 0 15px rgba(212,175,55,0.25);
+            line-height: 1;
+        }
+        .stat-label {
+            font-family: 'Cinzel', serif; font-size: 0.52rem;
+            letter-spacing: 0.2em; color: rgba(212,175,55,0.4);
+            text-transform: uppercase; margin-top: 0.4rem; display: block;
+        }
+
+        /* ── MISYON BANNER ── */
+        .misyon-banner {
+            position: relative; z-index: 1;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #080600 0%, #100d00 50%, #080600 100%);
+            border-top: 1px solid rgba(212,175,55,0.08);
+            border-bottom: 1px solid rgba(212,175,55,0.08);
+            text-align: center; overflow: hidden;
+        }
+        .misyon-banner::before {
+            content: 'בְּנֵי אוֹר';
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Noto Serif Hebrew', serif;
+            font-size: 8rem; color: rgba(212,175,55,0.025);
+            pointer-events: none; white-space: nowrap;
+        }
+        .misyon-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-style: italic; color: rgba(255,255,255,0.75);
+            max-width: 680px; margin: 0 auto 1rem; line-height: 1.9;
+        }
+        .misyon-text strong { color: #d4af37; font-style: normal; font-weight: 400; }
+        .misyon-signature {
+            font-family: 'Cinzel', serif; font-size: 0.62rem;
+            letter-spacing: 0.4em; color: rgba(212,175,55,0.4);
+            text-transform: uppercase;
+        }
 
         /* ── SA KI NEF ── */
         .neuf-section {
@@ -343,11 +424,127 @@
         @media (max-width: 480px) {
             .neuf-grid { grid-template-columns: 1fr; }
         }
+
+        /* ── PAWÒL SAJÈS ── */
+        .pawol-section {
+            position: relative; z-index: 1;
+            padding: 5rem 2rem;
+            background: linear-gradient(to bottom, #050505 0%, #0c0900 50%, #050505 100%);
+            text-align: center;
+            overflow: hidden;
+        }
+        .pawol-section::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, rgba(212,175,55,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .pawol-eyebrow {
+            font-family: 'Cinzel', serif; font-size: 0.62rem;
+            letter-spacing: 0.5em; color: rgba(212,175,55,0.5);
+            text-transform: uppercase; display: block;
+            margin-bottom: 0.8rem;
+        }
+        .pawol-main-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.2rem, 3vw, 1.7rem);
+            letter-spacing: 0.2em; color: #d4af37;
+            text-transform: uppercase; margin-bottom: 0.8rem;
+        }
+        .pawol-divider {
+            width: 60px; height: 1px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+            margin: 0 auto 3rem;
+        }
+        .pawol-card {
+            max-width: 720px; margin: 0 auto;
+            padding: 3rem 3.5rem;
+            border: 1px solid rgba(212,175,55,0.18);
+            background: rgba(212,175,55,0.02);
+            position: relative;
+        }
+        .pawol-card::before, .pawol-card::after {
+            content: '✦';
+            position: absolute; top: 1.2rem;
+            font-size: 0.6rem; color: rgba(212,175,55,0.3);
+        }
+        .pawol-card::before { left: 1.2rem; }
+        .pawol-card::after  { right: 1.2rem; }
+        .pawol-hebrew {
+            font-family: 'Noto Serif Hebrew', serif;
+            font-size: 1.5rem; color: rgba(212,175,55,0.4);
+            display: block; margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            min-height: 2rem;
+            transition: opacity 0.6s;
+        }
+        .pawol-quote {
+            font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+            color: rgba(255,255,255,0.88);
+            font-style: italic; line-height: 1.85;
+            margin-bottom: 1.5rem;
+            min-height: 4rem;
+            transition: opacity 0.6s;
+        }
+        .pawol-source {
+            font-family: 'Cinzel', serif; font-size: 0.65rem;
+            letter-spacing: 0.25em; color: rgba(212,175,55,0.55);
+            text-transform: uppercase;
+            transition: opacity 0.6s;
+        }
+        .pawol-dots {
+            display: flex; justify-content: center;
+            gap: 0.6rem; margin-top: 2rem;
+        }
+        .pawol-dot {
+            width: 5px; height: 5px; border-radius: 50%;
+            background: rgba(212,175,55,0.2);
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        .pawol-dot.active { background: #d4af37; }
+        @media (max-width: 600px) {
+            .pawol-card { padding: 2rem 1.5rem; }
+        }
+
+        /* ── LANG SWITCH ── */
+        .lang-switch {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            z-index: 9999;
+            display: flex; align-items: center; gap: 0;
+            border: 1px solid rgba(212,175,55,0.4);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .lang-btn {
+            font-family: 'Cinzel', serif; font-size: 0.62rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            padding: 0.5rem 0.9rem; cursor: pointer;
+            border: none; background: rgba(5,5,5,0.95);
+            color: rgba(212,175,55,0.4);
+            transition: all 0.25s;
+        }
+        .lang-btn.active {
+            background: rgba(212,175,55,0.15);
+            color: #d4af37;
+        }
+        .lang-btn:hover:not(.active) { color: rgba(212,175,55,0.7); }
+        .lang-divider-line {
+            width: 1px; height: 100%; background: rgba(212,175,55,0.3);
+            align-self: stretch;
+        }
     </style>
 </head>
 <body>
 
 <div id="stars"></div>
+
+<!-- LANG SWITCH -->
+<div class="lang-switch">
+    <button class="lang-btn active" id="btnFr" onclick="setLang('fr')">FR</button>
+    <div class="lang-divider-line"></div>
+    <button class="lang-btn" id="btnHt" onclick="setLang('ht')">HT</button>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -356,89 +553,116 @@
         <span class="nav-logo-text">Bnei Ohr</span>
     </a>
     <ul class="nav-links">
-        <li><a href="index.html" class="active">Akèy</a></li>
-        <li><a href="bibliyotek.html">Bibliyotèk</a></li>
-        <li><a href="leson.html">Leson</a></li>
-        <li><a href="#kontak">Kontak</a></li>
+        <li><a href="index.html" class="active" data-fr="Accueil" data-ht="Akèy">Accueil</a></li>
+        <li><a href="bibliyotek.html" data-fr="Bibliothèque" data-ht="Bibliyotèk">Bibliothèque</a></li>
+        <li><a href="leson.html" data-fr="Leçon" data-ht="Leson">Leçon</a></li>
+        <li><a href="#kontak" data-fr="Contact" data-ht="Kontak">Contact</a></li>
     </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <p class="hero-label">✦ Bnei Ohr — Pitit Limyè a ✦</p>
-        <h1 class="hero-title">SAJÈS POU<br><span>SEMÈN NAN</span></h1>
-        <div class="hero-divider"></div>
-        <p class="hero-verse">
-            "Nan kòmansman te gen Limyè — epi Limyè a te bon.
-            Se pou lizyè sa a klere nan kè ou jodia."
-        </p>
-        <a href="bibliyotek.html" class="hero-btn">Dekouvri Leson an</a>
+    <div class="hero-bg">
+        <div class="hero-content">
+            <p class="hero-label" data-fr="✦ Bnei Ohr — Enfants de la Lumière ✦" data-ht="✦ Bnei Ohr — Pitit Limyè a ✦">✦ Bnei Ohr — Enfants de la Lumière ✦</p>
+            <h1 class="hero-title" data-fr="SAGESSE POUR<br><span>LA SEMAINE</span>" data-ht="SAJÈS POU<br><span>SEMÈN NAN</span>">SAGESSE POUR<br><span>LA SEMAINE</span></h1>
+            <div class="hero-divider"></div>
+            <p class="hero-verse" data-fr="«&nbsp;Au commencement était la Lumière — et la Lumière était bonne. Que cette clarté illumine ton cœur aujourd'hui.&nbsp;»" data-ht="&quot;Nan kòmansman te gen Limyè — epi Limyè a te bon. Se pou lizyè sa a klere nan kè ou jodia.&quot;">
+                «&nbsp;Au commencement était la Lumière — et la Lumière était bonne. Que cette clarté illumine ton cœur aujourd'hui.&nbsp;»
+            </p>
+            <a href="leson.html" class="hero-btn" data-fr="Découvrir la Leçon" data-ht="Dekouvri Leson an">Découvrir la Leçon</a>
+        </div>
     </div>
     <div class="scroll-indicator">
-        <span>Deplase desann</span>
+        <span data-fr="Défiler vers le bas" data-ht="Deplase desann">Défiler vers le bas</span>
         <div class="scroll-dot"></div>
     </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+    <div class="stat-item">
+        <span class="stat-number">3</span>
+        <span class="stat-label" data-fr="Degrés d'Initiation" data-ht="Degre Inisyasyon">Degrés d'Initiation</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">22</span>
+        <span class="stat-label" data-fr="Modules d'Étude" data-ht="Modil Etid">Modules d'Étude</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">10</span>
+        <span class="stat-label" data-fr="Sefirot Étudiées" data-ht="Sefirot Etidye">Sefirot Étudiées</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-number">∞</span>
+        <span class="stat-label" data-fr="Lumière Ein Sof" data-ht="Limyè Ein Sof">Lumière Ein Sof</span>
+    </div>
+</div>
+
+<!-- MISYON BANNER -->
+<section class="misyon-banner">
+    <p class="misyon-text" data-fr="«&nbsp;Nous <strong>haïtianisons la forme</strong> — mais nous préservons <strong>l'essence de la Kabbale</strong> sans modification. La tradition authentique, dans ta langue, pour ton peuple.&nbsp;»" data-ht="&quot;Nou <strong>Ayitianize fòm</strong> lan — men nou konsève <strong>esans Kabbalah</strong> la san modifikasyon. Tradisyon otantik la, nan lang ou a, pou pèp ou a.&quot;">
+        «&nbsp;Nous <strong>haïtianisons la forme</strong> — mais nous préservons <strong>l'essence de la Kabbale</strong> sans modification. La tradition authentique, dans ta langue, pour ton peuple.&nbsp;»
+    </p>
+    <span class="misyon-signature" data-fr="✦ Mission Fondamentale de Bnei Ohr ✦" data-ht="✦ Misyon Fondamantal Bnei Ohr ✦">✦ Mission Fondamentale de Bnei Ohr ✦</span>
+</section>
+
+<!-- PAWÒL SAJÈS -->
+<section class="pawol-section">
+    <span class="pawol-eyebrow" data-fr="Réflexion du Jour" data-ht="Refleksyon Jounen an">Réflexion du Jour</span>
+    <h2 class="pawol-main-title" data-fr="Paroles de Sagesse" data-ht="Pawòl Sajès">Paroles de Sagesse</h2>
+    <div class="pawol-divider"></div>
+    <div class="pawol-card">
+        <span class="pawol-hebrew" id="pawolHebrew"></span>
+        <p class="pawol-quote" id="pawolQuote"></p>
+        <span class="pawol-source" id="pawolSource"></span>
+    </div>
+    <div class="pawol-dots" id="pawolDots"></div>
 </section>
 
 <!-- SA KI NEF -->
 <section class="neuf-section">
     <div class="section-header-center">
-        <span class="section-eyebrow">Dènye Aktivite</span>
-        <h2 class="section-main-title">Sa Ki Nèf</h2>
+        <span class="section-eyebrow" data-fr="Dernières Activités" data-ht="Dènye Aktivite">Dernières Activités</span>
+        <h2 class="section-main-title" data-fr="Ce Qui Est Nouveau" data-ht="Sa Ki Nèf">Ce Qui Est Nouveau</h2>
         <div class="section-main-divider"></div>
     </div>
 
     <div class="neuf-grid">
-
-        <!-- Kat 1 — Bibliyotèk -->
         <a href="bibliyotek.html" class="neuf-card">
-            <div class="neuf-card-placeholder">
-                <span>בֵּית</span>
-            </div>
+            <div class="neuf-card-placeholder"><span>בֵּית</span></div>
             <div class="neuf-card-overlay"></div>
             <div class="neuf-card-body">
-                <span class="neuf-card-tag">Resous</span>
-                <div class="neuf-card-title">Bibliyotèk Limyè a</div>
-                <span class="neuf-card-arrow">Antre →</span>
+                <span class="neuf-card-tag" data-fr="Ressources" data-ht="Resous">Ressources</span>
+                <div class="neuf-card-title" data-fr="Bibliothèque de Lumière" data-ht="Bibliyotèk Limyè a">Bibliothèque de Lumière</div>
+                <span class="neuf-card-arrow" data-fr="Entrer →" data-ht="Antre →">Entrer →</span>
             </div>
         </a>
-
-        <!-- Kat 2 — Glosye -->
         <a href="glosye.html" class="neuf-card">
-            <div class="neuf-card-placeholder">
-                <span>גְּלוֹ</span>
-            </div>
+            <div class="neuf-card-placeholder"><span>גְּלוֹ</span></div>
             <div class="neuf-card-overlay"></div>
             <div class="neuf-card-body">
-                <span class="neuf-card-tag">Etid</span>
-                <div class="neuf-card-title">Glosye Sajès La</div>
-                <span class="neuf-card-arrow">Antre →</span>
+                <span class="neuf-card-tag" data-fr="Étude" data-ht="Etid">Étude</span>
+                <div class="neuf-card-title" data-fr="Glossaire de Sagesse" data-ht="Glosye Sajès La">Glossaire de Sagesse</div>
+                <span class="neuf-card-arrow" data-fr="Entrer →" data-ht="Antre →">Entrer →</span>
             </div>
         </a>
-
-        <!-- Kat 3 — Ohr -->
         <a href="ohr.html" class="neuf-card">
-            <div class="neuf-card-placeholder">
-                <span>אוֹר</span>
-            </div>
+            <div class="neuf-card-placeholder"><span>אוֹר</span></div>
             <div class="neuf-card-overlay"></div>
             <div class="neuf-card-body">
-                <span class="neuf-card-tag">Ansèyman</span>
-                <div class="neuf-card-title">Ohr — Limyè</div>
-                <span class="neuf-card-arrow">Antre →</span>
+                <span class="neuf-card-tag" data-fr="Enseignement" data-ht="Ansèyman">Enseignement</span>
+                <div class="neuf-card-title" data-fr="Ohr — Lumière" data-ht="Ohr — Limyè">Ohr — Lumière</div>
+                <span class="neuf-card-arrow" data-fr="Entrer →" data-ht="Antre →">Entrer →</span>
             </div>
         </a>
-
     </div>
 </section>
 
 <!-- VÈSÈ -->
 <section class="verse-section">
     <p class="verse-hebrew">אֵין עוֹד מִלְּבַדּוֹ</p>
-    <p class="verse-text">"Pa gen anyen lòt pase Li — Ein Sof, sous tout sous yo, rasin tout reyalite."</p>
+    <p class="verse-text" data-fr="«&nbsp;Il n'y a rien d'autre que Lui — Ein Sof, source de toutes les sources, racine de toute réalité.&nbsp;»" data-ht="&quot;Pa gen anyen lòt pase Li — Ein Sof, sous tout sous yo, rasin tout reyalite.&quot;">«&nbsp;Il n'y a rien d'autre que Lui — Ein Sof, source de toutes les sources, racine de toute réalité.&nbsp;»</p>
     <span class="verse-ref">— Devarim 4:35 | Kabbalah Bnei Ohr</span>
 </section>
 
@@ -446,34 +670,34 @@
 <section class="leson-section">
     <div class="leson-inner">
         <div class="leson-text">
-            <span class="leson-eyebrow">Leson Semèn Nan</span>
-            <h2 class="leson-title">Malkuth — Pòt Antre nan Limyè a</h2>
-            <p class="leson-desc">
-                Malkuth se kote nou kòmanse — tè a anba pye nou, reyalite fizik la. Men se tou kote syèl rankontre tè. Chak aksyon nou fè isit la gen yon repèkisyon espirityèl.
+            <span class="leson-eyebrow" data-fr="Leçon de la Semaine" data-ht="Leson Semèn Nan">Leçon de la Semaine</span>
+            <h2 class="leson-title" data-fr="Malkouth — La Porte d'Entrée dans la Lumière" data-ht="Malkuth — Pòt Antre nan Limyè a">Malkouth — La Porte d'Entrée dans la Lumière</h2>
+            <p class="leson-desc" data-fr="Malkouth est notre point de départ — la terre sous nos pieds, la réalité physique. Mais c'est aussi là où le ciel rencontre la terre. Chaque action que nous faisons ici a une répercussion spirituelle." data-ht="Malkuth se kote nou kòmanse — tè a anba pye nou, reyalite fizik la. Men se tou kote syèl rankontre tè. Chak aksyon nou fè isit la gen yon repèkisyon espirityèl.">
+                Malkouth est notre point de départ — la terre sous nos pieds, la réalité physique. Mais c'est aussi là où le ciel rencontre la terre. Chaque action que nous faisons ici a une répercussion spirituelle.
             </p>
-            <a href="bibliyotek.html" class="leson-btn">Li Leson Konplè a →</a>
+            <a href="bibliyotek.html" class="leson-btn" data-fr="Lire la Leçon Complète →" data-ht="Li Leson Konplè a →">Lire la Leçon Complète →</a>
         </div>
         <div class="leson-visual">
             <span class="leson-visual-hebrew">מַלְכוּת</span>
-            <span class="leson-visual-name">Malkuth — Wayòm</span>
+            <span class="leson-visual-name" data-fr="Malkouth — Royaume" data-ht="Malkuth — Wayòm">Malkouth — Royaume</span>
         </div>
     </div>
 </section>
 
 <!-- KONTAK -->
 <section id="kontak" style="padding:5rem 2rem; background:#050505; text-align:center; position:relative; z-index:1;">
-    <span class="section-eyebrow" style="display:block; margin-bottom:0.8rem;">Rejwenn Nou</span>
-    <h2 class="section-main-title" style="margin-bottom:1.5rem;">Kontakte Bnei Ohr</h2>
+    <span class="section-eyebrow" data-fr="Rejoignez-nous" data-ht="Rejwenn Nou" style="display:block; margin-bottom:0.8rem;">Rejoignez-nous</span>
+    <h2 class="section-main-title" data-fr="Contacter Bnei Ohr" data-ht="Kontakte Bnei Ohr" style="margin-bottom:1.5rem;">Contacter Bnei Ohr</h2>
     <div class="section-main-divider" style="margin-bottom:2rem;"></div>
-    <p style="color:#808080; font-style:italic; max-width:500px; margin:0 auto 2rem;">
-        Ou enterese etidye? Ou gen yon kesyon? Ekri nou — nou ap reponn ou.
+    <p data-fr="Vous souhaitez étudier ? Vous avez une question ? Écrivez-nous — nous vous répondrons." data-ht="Ou enterese etidye? Ou gen yon kesyon? Ekri nou — nou ap reponn ou." style="color:#808080; font-style:italic; max-width:500px; margin:0 auto 2rem;">
+        Vous souhaitez étudier ? Vous avez une question ? Écrivez-nous — nous vous répondrons.
     </p>
     <form onsubmit="handleSubmit(event)" style="max-width:500px; margin:0 auto; display:flex; flex-direction:column; gap:1rem;">
-        <input type="text" placeholder="Non ou" required style="background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.2); color:#f0f0f0; padding:0.8rem 1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; outline:none; width:100%;">
-        <input type="email" placeholder="Email ou" required style="background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.2); color:#f0f0f0; padding:0.8rem 1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; outline:none; width:100%;">
-        <textarea placeholder="Mesaj ou" rows="4" required style="background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.2); color:#f0f0f0; padding:0.8rem 1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; outline:none; width:100%; resize:vertical;"></textarea>
-        <button type="submit" id="submitBtn" style="background:rgba(212,175,55,0.1); border:1px solid #d4af37; color:#d4af37; padding:0.9rem 2rem; font-family:'Cinzel',serif; font-size:0.8rem; letter-spacing:0.3em; text-transform:uppercase; cursor:pointer; transition:all 0.3s;">
-            Voye Mesaj
+        <input type="text" id="inputNom" placeholder="Votre nom" required style="background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.2); color:#f0f0f0; padding:0.8rem 1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; outline:none; width:100%;" data-fr="Votre nom" data-ht="Non ou">
+        <input type="email" id="inputEmail" placeholder="Votre email" required style="background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.2); color:#f0f0f0; padding:0.8rem 1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; outline:none; width:100%;" data-fr="Votre email" data-ht="Email ou">
+        <textarea id="inputMsg" placeholder="Votre message" rows="4" required style="background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.2); color:#f0f0f0; padding:0.8rem 1rem; font-family:'Cormorant Garamond',serif; font-size:1rem; outline:none; width:100%; resize:vertical;" data-fr="Votre message" data-ht="Mesaj ou"></textarea>
+        <button type="submit" id="submitBtn" data-fr="Envoyer le Message" data-ht="Voye Mesaj" style="background:rgba(212,175,55,0.1); border:1px solid #d4af37; color:#d4af37; padding:0.9rem 2rem; font-family:'Cinzel',serif; font-size:0.8rem; letter-spacing:0.3em; text-transform:uppercase; cursor:pointer; transition:all 0.3s;">
+            Envoyer le Message
         </button>
     </form>
 </section>
@@ -482,13 +706,13 @@
 <footer>
     <span class="footer-logo">בְּנֵי אוֹר</span>
     <ul class="footer-links">
-        <li><a href="index.html">Akèy</a></li>
-        <li><a href="bibliyotek.html">Bibliyotèk</a></li>
-        <li><a href="glosye.html">Glosye</a></li>
+        <li><a href="index.html" data-fr="Accueil" data-ht="Akèy">Accueil</a></li>
+        <li><a href="bibliyotek.html" data-fr="Bibliothèque" data-ht="Bibliyotèk">Bibliothèque</a></li>
+        <li><a href="glosye.html" data-fr="Glossaire" data-ht="Glosye">Glossaire</a></li>
         <li><a href="ohr.html">Ohr</a></li>
-        <li><a href="#kontak">Kontak</a></li>
+        <li><a href="#kontak" data-fr="Contact" data-ht="Kontak">Contact</a></li>
     </ul>
-    <p class="footer-copy">© Bnei Ohr — Ayiti — Tout dwa rezève</p>
+    <p class="footer-copy" data-fr="© Bnei Ohr — Haïti — Tous droits réservés" data-ht="© Bnei Ohr — Ayiti — Tout dwa rezève">© Bnei Ohr — Haïti — Tous droits réservés</p>
 </footer>
 
 <script>
@@ -506,18 +730,130 @@
     function handleSubmit(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
-        btn.textContent = '✓ Mesaj Voye!';
+        btn.textContent = currentLang === 'fr' ? '✓ Message Envoyé !' : '✓ Mesaj Voye!';
         btn.style.color = '#a0d4a0';
         btn.style.borderColor = '#a0d4a0';
         setTimeout(() => {
-            btn.textContent = 'Voye Mesaj';
+            btn.textContent = currentLang === 'fr' ? 'Envoyer le Message' : 'Voye Mesaj';
             btn.style.color = '#d4af37';
             btn.style.borderColor = '#d4af37';
             e.target.reset();
         }, 3000);
     }
 
-    // NAV SCROLL EFFECT
+    // ── LANG SWITCH ──
+    const pawolListFr = [
+        { hebrew: "אוֹר אֵין סוֹף", quote: "La Lumière d'Ein Sof est sans limite — elle pénètre toute réalité sans se mélanger à rien. Cherche-la dans le silence, et tu la trouveras en tout.", source: "Kabbale Bnei Ohr — Ohr Ein Sof" },
+        { hebrew: "כֶּתֶר עֶלְיוֹן", quote: "Kéter est la couronne suprême — la volonté divine avant toute pensée. Lorsque tu abandonnes ta volonté propre, tu ouvres la porte à la connaissance véritable.", source: "Zohar I, 15a — Kéter" },
+        { hebrew: "תִּקּוּן עוֹלָם", quote: "Chaque bonne action accomplie ici, chaque effort pour relever ton frère, est un tikoun — une réparation qui remonte jusqu'aux racines de la création.", source: "Kabbale Louria — Tikkoun Olam" },
+        { hebrew: "אֵין עוֹד מִלְּבַדּוֹ", quote: "Il n'y a rien d'autre que Lui. Toute diversité que tu vois n'est qu'un voile. Quand tu comprends cela, la peur s'en va, la paix entre.", source: "Devarim 4:35 — Ein Od Milvado" },
+        { hebrew: "צִמְצוּם", quote: "Dieu s'est contracté pour te donner l'espace d'exister. C'est un don sans limite — ta valeur réside dans ton existence même.", source: "Ari z\"l — Etz Chaïm, Tsimtsoum" },
+        { hebrew: "נְשָׁמָה", quote: "Ta Neshamah — ton âme spirituelle — n'est jamais blessée, jamais perdue. C'est toi qui l'oublies. Reviens à elle chaque matin.", source: "Zohar II, 94b — Neshamah" },
+        { hebrew: "שְׁכִינָה", quote: "La Chekhina — la présence divine — descend partout où il y a amour et sagesse. Ouvre ton cœur, et tu la sentiras ici même.", source: "Zohar III, 5a — Chekhina" },
+        { hebrew: "דַּעַת", quote: "La Da'at — la vraie connaissance — n'est pas dans la tête, mais dans le cœur. Elle vient quand tu unifies ce que tu comprends avec ce que tu vis.", source: "Baal HaSoulam — Soulam, Connaissance" },
+        { hebrew: "מַלְכוּת", quote: "Malkouth est la porte d'entrée — la terre sous tes pieds. Ne méprise pas la réalité physique : c'est le jardin où la lumière suprême vient germer.", source: "Kabbale Bnei Ohr — Malkouth" },
+        { hebrew: "לְשֵׁם שָׁמַיִם", quote: "Fais toutes choses pour le Nom du ciel — non par crainte, non pour la gloire. Les actes désintéressés sont faits dans la lumière pure, et ce sont eux qui changent le monde.", source: "Pirkei Avot 2:12 — Lichem Chamaïm" }
+    ];
+
+    const pawolListHt = [
+        { hebrew: "אוֹר אֵין סוֹף", quote: "Limyè Ein Sof la pa gen limit — li anvayi tout reyalite, men li pa mele ak anyen. Chèche li nan silans, epi ou ap jwenn li nan tout.", source: "Kabbalah Bnei Ohr — Ohr Ein Sof" },
+        { hebrew: "כֶּתֶר עֶלְיוֹן", quote: "Kèter se kouròn ki pi wo a — volonte ilahi piti anvan tout panse. Lè ou abandone volonte ou, ou ouvri pòt konesans veritab la.", source: "Zohar I, 15a — Kèter" },
+        { hebrew: "תִּקּוּן עוֹלָם", quote: "Chak ti aksyon bon ou fè isit Ayiti, chaque efo pou leve frè ou, se yon tikun — yon reparasyon ki monte jouk nan rasin kreyasyon an.", source: "Lurianic Kabbalah — Tikkun Olam" },
+        { hebrew: "אֵין עוֹד מִלְּבַדּוֹ", quote: "Pa gen anyen lòt pase Li. Tout divèsite ou wè se sèlman vwal youn. Lè ou konprann sa, pè a kite, lapè antre.", source: "Devarim 4:35 — Ein Od Milvado" },
+        { hebrew: "צִמְצוּם", quote: "Bondye te kontrakte tèt Li pou bay espas pou ou egziste. Se yon kado ki pa gen limite — valè ou nan egzistans ou menm.", source: "Ari z\"l — Etz Chaim, Tsimtsoum" },
+        { hebrew: "נְשָׁמָה", quote: "Neshamah ou a — zam espirityèl ou — pa janm blese, pa janm pèdi. Se ou ki bliye li. Retounen bò li chak maten.", source: "Zohar II, 94b — Neshamah" },
+        { hebrew: "שְׁכִינָה", quote: "Shekhinah — prezans ilahi a — desann nan tout kote ki gen lanmou ak sajès. Louvri kè ou, epi ou ap santi li isit menm, Ayiti.", source: "Zohar III, 5a — Shekhinah" },
+        { hebrew: "דַּעַת", quote: "Da'at — konesans veritab — pa nan tèt, men nan kè. Li vini lè ou inifye sa ou konprann ak sa ou viv chak jou.", source: "Baal HaSulam — Sulam, Konesans" },
+        { hebrew: "מַלְכוּת", quote: "Malkuth se pòt antre a — tè a ki anba pye ou. Pa meprize reyalite fizik la: se jaden an kote limyè siprèm nan vini pouse.", source: "Kabbalah Bnei Ohr — Malkuth" },
+        { hebrew: "לְשֵׁם שָׁמַיִם", quote: "Fè tout bagay pou non syèl la — pa pou lwanj, pa pou krentif. Zak gratis fèt nan limyè puro, epi se yo ki chanje monn nan.", source: "Pirkei Avot 2:12 — Lishem Shamayim" }
+    ];
+
+    let currentLang = 'fr';
+    let pawolList = pawolListFr;
+
+    function setLang(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        document.getElementById('btnFr').classList.toggle('active', lang === 'fr');
+        document.getElementById('btnHt').classList.toggle('active', lang === 'ht');
+
+        // Update all data-lang elements
+        document.querySelectorAll('[data-fr]').forEach(el => {
+            const val = el.getAttribute('data-' + lang);
+            if (!val) return;
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.placeholder = val;
+            } else if (el.tagName === 'BUTTON' && el.id === 'submitBtn') {
+                el.textContent = val;
+            } else {
+                el.innerHTML = val;
+            }
+        });
+
+        // Update page title
+        document.title = lang === 'fr'
+            ? 'Bnei Ohr — בְּנֵי אוֹר — Enfants de la Lumière'
+            : 'Bnei Ohr — בְּנֵי אוֹר — Pitit Limyè a';
+
+        // Update pawol list
+        pawolList = lang === 'fr' ? pawolListFr : pawolListHt;
+        showPawol(currentPawol, true);
+
+        localStorage.setItem('bneiohr_lang', lang);
+    }
+
+    // Restore saved lang
+    const savedLang = localStorage.getItem('bneiohr_lang');
+    if (savedLang && savedLang !== 'fr') setLang(savedLang);
+
+
+
+    // Chwazi fraz la baze sou dat jounen an (menm fraz pou tout moun menm jou)
+    const todayIndex = new Date().getDate() % pawolList.length;
+    let currentPawol = todayIndex;
+
+    function showPawol(index, animate) {
+        const quote = document.getElementById('pawolQuote');
+        const hebrew = document.getElementById('pawolHebrew');
+        const source = document.getElementById('pawolSource');
+        const dots = document.querySelectorAll('.pawol-dot');
+
+        if (animate) {
+            [quote, hebrew, source].forEach(el => el.style.opacity = '0');
+            setTimeout(() => {
+                hebrew.textContent = pawolList[index].hebrew;
+                quote.textContent = '"' + pawolList[index].quote + '"';
+                source.textContent = '— ' + pawolList[index].source;
+                [quote, hebrew, source].forEach(el => el.style.opacity = '1');
+            }, 400);
+        } else {
+            hebrew.textContent = pawolList[index].hebrew;
+            quote.textContent = '"' + pawolList[index].quote + '"';
+            source.textContent = '— ' + pawolList[index].source;
+        }
+
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    // Build dots
+    const dotsContainer = document.getElementById('pawolDots');
+    pawolList.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'pawol-dot' + (i === currentPawol ? ' active' : '');
+        dot.addEventListener('click', () => { currentPawol = i; showPawol(i, true); });
+        dotsContainer.appendChild(dot);
+    });
+
+    // Afichaj inisyal
+    showPawol(currentPawol, false);
+
+    // Chanjman otomatik chak 8 segonn
+    setInterval(() => {
+        currentPawol = (currentPawol + 1) % pawolList.length;
+        showPawol(currentPawol, true);
+    }, 8000);
+
+
     window.addEventListener('scroll', () => {
         const nav = document.querySelector('nav');
         if (window.scrollY > 50) {
